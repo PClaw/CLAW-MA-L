@@ -22,7 +22,7 @@ def send_email(smtp_server, smtp_port, sender_email, sender_password, receiver_e
 smtp_server = 'smtp.gmail.com  # SMTP sunucu adresi
 smtp_port = 587  # SMTP portu (TLS için genellikle 587 kullanılır)
 sender_email = mehmetsaribay50@gmail.com  # Gönderici e-posta adresi
-sender_password = mehmeteymen  # Gönderici e-posta şifresi
+sender_password = # Gönderici e-posta şifresi
 receiver_email = tankstars121@gmail.com  # Alıcı e-posta adresi
 subject = 'Test E-postası'  # E-posta konusu
 
