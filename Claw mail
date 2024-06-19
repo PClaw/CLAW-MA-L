@@ -1,0 +1,38 @@
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+def send_email(smtp_server, smtp_port, sender_email, sender_password, receiver_email, subject, message):
+    # Oluşturulacak e-posta
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = receiver_email
+    msg['Subject'] = subject
+
+    # E-posta içeriği ekleniyor
+    msg.attach(MIMEText(message, 'plain'))
+
+    # SMTP serverına bağlanma
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()  # Güvenli bağlantı (TLS) başlat
+        server.login(sender_email, sender_password)
+        server.sendmail(sender_email, receiver_email, msg.as_string())
+
+# Gönderim yapılacak e-posta bilgileri
+smtp_server = 'smtp.gmail.com  # SMTP sunucu adresi
+smtp_port = 587  # SMTP portu (TLS için genellikle 587 kullanılır)
+sender_email = mehmetsaribay50@gmail.com  # Gönderici e-posta adresi
+sender_password = mehmeteymen  # Gönderici e-posta şifresi
+receiver_email = tankstars121@gmail.com  # Alıcı e-posta adresi
+subject = 'Test E-postası'  # E-posta konusu
+
+# Gönderilecek mesajlar listesi
+messages = [
+    'Mesaj 1 içeriği.',
+    'Mesaj 2 içeriği.',
+    'Mesaj 3 içeriği.'
+]
+
+# Her mesaj için e-posta gönderme işlemi
+for message in messages:
+    send_email(smtp_server, smtp_port, sender_email, sender_password, receiver_email, subject, message)
